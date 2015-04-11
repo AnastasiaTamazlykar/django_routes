@@ -1,0 +1,29 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Routes Maker</title>
+<link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}"/>
+{% block scripts %}{% endblock %}
+</head>
+<body>
+<div class="wrapper">
+{% block header %}
+<h1>Routes Maker</h1>
+{% endblock %}
+
+{% block content %} {% endblock %}
+<div class="appendix"></div>
+    </div>
+{% block footer %}
+<div class="footer">
+					<!--<div id="info">-->
+					<!--<a href="Контакты" >Контакты  </a>-->
+                    <!--<a href="Кодекс поведения">Кодекс поведения</a>-->
+                    <!--<a href="О сайте">О сайте</a>-->
+                    <!--</div>-->
+</div>
+{% endblock %}
+</body>
+</html>

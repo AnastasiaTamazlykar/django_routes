@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+ {% block scripts %}
+{% load staticfiles %}
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+   <meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="{% static "css/router.css" %}"/>
+ <script type="text/javascript"
+   src="https://maps.googleapis.com/maps/api/js?v=3&signed_in=true&libraries=places&language=ru"></script>
+ <script type="text/javascript" src="{% static "autocomplete_map.js"  %}">   </script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+
+   $('a[href^="#make"]').on('click', function(e){
+     e.preventDefault();
+    $('#button').removeClass('find').addClass('save');
+     $('#button').attr('value','Сохранить Маршрут');
+    $('#map-canvas').show();
+    $('#profiletabs ul li a').removeClass('sel');
+    $(this).addClass('sel');
+   $('#list').hide();
+  });
+
+   $('a[href^="#list"]').on('click', function(e){
+     e.preventDefault();
+     $('#profiletabs ul li a').removeClass('sel');
+    $(this).addClass('sel');
+    $('#make_div').hide();
+    $('#list').show();
+  });
+
+   $('a[href^="#search"]').on('click', function(e){
+    $(this).addClass('sel');
+   $('#make_div').show();
+   $('#map-canvas').hide();
+   $('#list').show();
+   $('#button').val('Найти маршрут');
+   $('#button').removeClass('save').addClass('find');
+  });
+
+});
+</script>
+{% endblock %}
+   {% block content %}
+<div id="w">
+     <div id="content" class="clearfix">
+    <nav id="profiletabs">
+      <ul class="clearfix">
+        <li><a href="#make" class="sel">New Route</a></li>
+        <li><a href="#list">All Routes</a></li>
+        <li><a href="#search">Search Route</a></li>
+      </ul>
+    </nav>
+
+    <section id="make">
+        <div id="make_div">
+        <input id="begin_address" class="controls" type="text" placeholder="Откуда">
+        <input id="end_address" class="controls" type="text"  placeholder="Куда">
+        <input id="begin_point" type="hidden">
+        <input id="end_point"  type="hidden">
+        <div id="map-canvas"></div>
+         <input type="button" id="button" value="Сохранить Маршрут" class="save">
+            </div>
+     </section>
+
+    <section id="list" class="hidden">
+    {% include "routes_list.html" %}
+    </section>
+     <section id="search" class="hidden">
+    </section>
+</div><!-- @end #content -->
+  </div><!-- @end #w -->
+{% endblock %}

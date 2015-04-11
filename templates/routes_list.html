@@ -1,0 +1,22 @@
+{%for route in routes%}
+<table id='routes_list' cellpadding="3" cellspacing="1">
+		<tr>
+			<td colspan="2" rowspan="1" style="text-align: center;">
+			<h3>ROUTE {{forloop.counter}}</h3>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 20px;">От:</td>
+			<td style="width: 300px;">{{route.begin_address}}</td>
+		</tr>
+		<tr>
+			<td  style="width: 20px;">До:</td>
+			<td  style="width:300px;">{{route.end_address}}</td>
+		</tr>
+</table>
+
+{% endfor %}
+
+
+
+
